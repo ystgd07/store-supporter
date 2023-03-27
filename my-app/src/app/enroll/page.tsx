@@ -31,29 +31,25 @@ const TimeData = [
 ];
 export default function Enroll() {
     const [date, setDate] = useState(null);
-    const [timeDate, setTimeDate] = useState(null);
     const [selectedOption, setSelectedOption] = useState(TimeData[0]);
     const [selectedFile, setSelectedFile] = useState(null);
     const [loading, setLoading] = useState(false);
-
+    const [caption, setCaption] = useState(null);
     const dateRef = useRef(null);
     const imgRef = useRef(null);
     const prdNameRef = useRef(null);
     const selectRef = useRef(null);
 
-    const handleSelectChange = (selectedOption) => {
-        setSelectedOption(selectedOption.vlaue);
-        console.log(selectedOption.value);
-    };
     async function uploadPost() {
         if (loading) return;
         setLoading(true);
         const docRef = await addDoc(collection(db, 'posts'), {
-            caption: prdNameRef.current.value,
-            date: dateRef.current.value,
-            // expireTime: selectedOption.value,
+            caption: caption,
+            date: date,
+            expireTime: selectedOption,
             timestamp: serverTimestamp(),
         });
+
         const imageRef = ref(storage, `posts/${docRef.id}/image`);
         await uploadString(imageRef, selectedFile, 'data_url').then(async (snapshot) => {
             const downloadURL = await getDownloadURL(imageRef);
@@ -61,9 +57,13 @@ export default function Enroll() {
                 image: downloadURL,
             });
         });
+
+        setCaption(null);
+        setDate(null);
         setLoading(false);
         setSelectedFile(null);
     }
+
     function addImageToPost(event) {
         const reader = new FileReader();
         if (event.target.files[0]) {
@@ -73,6 +73,7 @@ export default function Enroll() {
             setSelectedFile(readerEvent.target.result);
         };
     }
+
     return (
         <div className="flex flex-wrap items-center justify-center max-w-6xl p-4 mx-auto space-y-4 md:pt-8 md:flex-row md:space-x-6">
             {/* TODO: div 태그 추후 컴포넌트화 필요 */}
@@ -95,21 +96,15 @@ export default function Enroll() {
                     <input
                         className="m-3 mt-2 text-center border-gray-500 rounded-md cursor-pointer focus:ring-black focus:border-black bg-slate-100"
                         type="text"
-                        ref={prdNameRef}
+                        onChange={(e) => setCaption(e.target.value)}
+                        value={caption || ''}
                         placeholder="상품이름"
                     />
                 </div>
                 <div className="flex flex-col justify-between flex-1 h-full ml-5">
-                    <input onChange={(e) => setDate(e.target.value)} placeholder="enroll Date" type="date" ref={dateRef}></input>
+                    <input placeholder="enroll Date" type="date" value={date || ''} onChange={(e) => setDate(e.target.value)}></input>
 
-                    <Select
-                        width="120"
-                        height="40"
-                        options={TimeData}
-                        placeholder="00:00"
-                        value={selectedOption}
-                        onChange={handleSelectChange}
-                    />
+                    <Select options={TimeData} defaultValue={TimeData[0]} onChange={(e) => setSelectedOption(e?.value)} />
                 </div>
             </div>
             <div className="border rounded-md w-[50%]">
@@ -117,7 +112,7 @@ export default function Enroll() {
                     type="submit"
                     className="w-full p-2 text-white bg-red-600 shadow-md hover:brightness-125 disabled:bg-gray-200 disabled:cursor-not-allowed disabled:hover:brightness-100"
                     onClick={uploadPost}
-                    disabled={!selectedFile || loading || !prdNameRef}
+                    disabled={!selectedFile || loading || !caption || !date}
                 >
                     등록하기
                 </button>
