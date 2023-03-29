@@ -31,7 +31,7 @@ const TimeData = [
 ];
 export default function Enroll() {
     const [date, setDate] = useState(null);
-    const [selectedOption, setSelectedOption] = useState(TimeData[0]);
+    const [selectedOption, setSelectedOption] = useState(TimeData[0].value);
     const [selectedFile, setSelectedFile] = useState(null);
     const [loading, setLoading] = useState(false);
     const [caption, setCaption] = useState(null);
