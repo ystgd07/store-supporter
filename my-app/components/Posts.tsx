@@ -19,7 +19,7 @@ interface PostData {
 
 export default function Posts() {
     const month = useSelector((state: RootState) => {
-        return state.post.month;
+        return String(state.post.month);
     });
 
     const [posts, setPosts] = useState<QueryDocumentSnapshot<DocumentData>[]>([]);
