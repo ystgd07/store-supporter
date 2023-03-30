@@ -46,7 +46,7 @@ export default function Posts() {
                                 date={postData.date}
                                 expireTime={postData.expireTime}
                                 image={postData.image}
-                                timestamp={postData.timestamp}
+                                timestamp={postData.timestamp.toString()}
                             />
                         );
                 })}
