@@ -5,7 +5,6 @@ import { CameraIcon } from '@heroicons/react/24/outline';
 import { addDoc, collection, doc, serverTimestamp, updateDoc } from 'firebase/firestore';
 import { db, storage } from '../../../firebase';
 import { getDownloadURL, ref, uploadString } from 'firebase/storage';
-import { useCallback } from 'preact/hooks';
 import Image from 'next/image';
 interface TimeDataItem {
     value: string;
@@ -112,7 +111,12 @@ export default function Enroll() {
                     />
                 </div>
                 <div className="flex flex-col justify-between flex-1 h-full ml-5">
-                    <input placeholder="enroll Date" type="date" value={date || ''} onChange={(e) => setDate(e.target.value)}></input>
+                    <input
+                        placeholder="enroll Date"
+                        type="date"
+                        value={date || ''}
+                        onChange={(e) => setDate(e.target.value as string)}
+                    ></input>
 
                     <Select options={TimeData} defaultValue={TimeData[0]} onChange={(e) => setSelectedOption(e?.value)} />
                 </div>
