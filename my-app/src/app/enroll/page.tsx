@@ -72,7 +72,7 @@ export default function Enroll() {
 
     function addImageToPost(event: React.ChangeEvent<HTMLInputElement>) {
         const reader = new FileReader();
-        if (event.target.files[0]) {
+        if (event.target.files && event.target.files[0]) {
             reader.readAsDataURL(event.target.files[0]);
         }
         reader.onload = (readerEvent) => {
