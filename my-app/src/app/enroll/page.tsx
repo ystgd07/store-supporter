@@ -6,6 +6,7 @@ import { addDoc, collection, doc, serverTimestamp, updateDoc } from 'firebase/fi
 import { db, storage } from '../../../firebase';
 import { getDownloadURL, ref, uploadString } from 'firebase/storage';
 import { useCallback } from 'preact/hooks';
+import Image from 'next/image';
 interface TimeDataItem {
     value: string;
     label: string;
@@ -84,10 +85,12 @@ export default function Enroll() {
             <div className="flex items-center justify-between w-full max-w-2xl px-5 mx-auto my-8 align-baseline bg-white border rounded-md">
                 <div className="flex flex-col flex-1">
                     {selectedFile ? (
-                        <img
+                        <Image
                             onClick={() => setSelectedFile(null)}
                             src={selectedFile}
                             alt=""
+                            width={300}
+                            height={250}
                             className="w-full max-h-[250px] object-cover cursor-pointer"
                         />
                     ) : (

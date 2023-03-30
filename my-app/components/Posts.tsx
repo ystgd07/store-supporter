@@ -19,7 +19,7 @@ interface PostData {
 
 export default function Posts() {
     const month = useSelector((state: RootState) => {
-        return String(state.post.month);
+        return state.post.month;
     });
 
     const [posts, setPosts] = useState<QueryDocumentSnapshot<DocumentData>[]>([]);
@@ -28,16 +28,16 @@ export default function Posts() {
         const unsubscribe = onSnapshot(query(collection(db, 'posts'), orderBy('date', 'asc')), (snapshot) => {
             setPosts(snapshot.docs);
         });
-        return unsubscribe;
-    }, [db]);
 
+        return unsubscribe;
+    }, [month]);
     return (
         <div className="flex flex-col items-center justify-center">
             <PostHeader />
             <div className="max-w-6xl py-4 mx-auto my-6 sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
                 {posts.map((post: QueryDocumentSnapshot<DocumentData>) => {
                     const postData = post.data() as PostData;
-                    if (dayjs(post.data().date).format('MM') == month)
+                    if (Number(dayjs(postData.date).format('MM')) === month) {
                         return (
                             <Post
                                 key={post.id}
@@ -49,6 +49,7 @@ export default function Posts() {
                                 timestamp={postData.timestamp.toString()}
                             />
                         );
+                    }
                 })}
             </div>
         </div>
