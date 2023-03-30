@@ -3,7 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import { ArrowSmallLeftIcon, ArrowSmallRightIcon } from '@heroicons/react/24/solid';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeDTM, changeMonth } from 'store/slices/postSlice';
+import { changeDTM } from 'store/slices/postSlice';
 export default function PostHeader() {
     const dispatch = useDispatch();
 
