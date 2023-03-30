@@ -55,12 +55,14 @@ export default function Enroll() {
         });
 
         const imageRef = ref(storage, `posts/${docRef.id}/image`);
-        await uploadString(imageRef, selectedFile, 'data_url').then(async (snapshot) => {
-            const downloadURL = await getDownloadURL(imageRef);
-            await updateDoc(doc(db, 'posts', docRef.id), {
-                image: downloadURL,
+        if (selectedFile) {
+            await uploadString(imageRef, selectedFile, 'data_url').then(async (snapshot) => {
+                const downloadURL = await getDownloadURL(imageRef);
+                await updateDoc(doc(db, 'posts', docRef.id), {
+                    image: downloadURL,
+                });
             });
-        });
+        }
 
         setCaption(null);
         setDate(null);
