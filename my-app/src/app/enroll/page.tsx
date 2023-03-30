@@ -43,7 +43,6 @@ export default function Enroll() {
     const dateRef = useRef<HTMLInputElement>(null);
     const imgRef = useRef<HTMLInputElement>(null);
     const prdNameRef = useRef<HTMLInputElement>(null);
-    const selectRef = useRef<Select<any>>(null);
 
     async function uploadPost() {
         if (loading) return;
