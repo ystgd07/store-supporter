@@ -76,7 +76,9 @@ export default function Enroll() {
             reader.readAsDataURL(event.target.files[0]);
         }
         reader.onload = (readerEvent) => {
-            setSelectedFile(readerEvent.target.result);
+            if (readerEvent.target && typeof readerEvent.target.result === 'string') {
+                setSelectedFile(readerEvent.target.result);
+            }
         };
     }
 
