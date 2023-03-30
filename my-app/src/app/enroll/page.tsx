@@ -118,7 +118,7 @@ export default function Enroll() {
                         onChange={(e) => setDate(e.target.value as string | null)}
                     ></input>
 
-                    <Select options={TimeData} defaultValue={TimeData[0]} onChange={(e) => setSelectedOption(e?.value)} />
+                    <Select options={TimeData} defaultValue={TimeData[0]} onChange={(e) => setSelectedOption(e?.value ?? null)} />
                 </div>
             </div>
             <div className="border rounded-md w-[50%]">
