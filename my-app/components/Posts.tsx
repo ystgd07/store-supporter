@@ -22,7 +22,7 @@ export default function Posts() {
         return state.post.month;
     });
 
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState<QueryDocumentSnapshot<DocumentData>[]>([]);
 
     useEffect(() => {
         const unsubscribe = onSnapshot(query(collection(db, 'posts'), orderBy('date', 'asc')), (snapshot) => {
