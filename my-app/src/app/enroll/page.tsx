@@ -114,8 +114,8 @@ export default function Enroll() {
                     <input
                         placeholder="enroll Date"
                         type="date"
-                        value={date || ''}
-                        onChange={(e) => setDate(e.target.value as string)}
+                        value={date ?? ''}
+                        onChange={(e) => setDate(e.target.value as string | null)}
                     ></input>
 
                     <Select options={TimeData} defaultValue={TimeData[0]} onChange={(e) => setSelectedOption(e?.value)} />
