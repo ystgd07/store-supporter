@@ -99,7 +99,7 @@ export default function Enroll() {
                     ) : (
                         <CameraIcon
                             className="p-2 mt-2 text-red-500 transition-transform duration-200 ease-out bg-red-200 border-2 rounded-full cursor-pointer h-14 hover:scale-105"
-                            onClick={() => imgRef.current.click()}
+                            onClick={() => imgRef.current?.click()}
                         />
                     )}
                     <input type="file" hidden ref={imgRef} onChange={addImageToPost} />
