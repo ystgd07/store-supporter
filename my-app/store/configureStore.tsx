@@ -9,3 +9,4 @@ const store = configureStore({
 });
 
 export { store, changeDTM };
+export type RootState = ReturnType<typeof store.getState>;

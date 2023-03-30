@@ -1,7 +1,11 @@
 import Header from 'components/Header';
 import './globals.css';
 import Providers from './Providers';
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+type RootLayoutProps = {
+    children: React.ReactNode;
+};
+
+export default function RootLayout({ children }: RootlayoutProps) {
     return (
         <html lang="en">
             {/*

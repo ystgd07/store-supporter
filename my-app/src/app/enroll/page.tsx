@@ -6,8 +6,12 @@ import { addDoc, collection, doc, serverTimestamp, updateDoc } from 'firebase/fi
 import { db, storage } from '../../../firebase';
 import { getDownloadURL, ref, uploadString } from 'firebase/storage';
 import { useCallback } from 'preact/hooks';
+interface TimeDataItem {
+    value: string;
+    label: string;
+}
 
-const TimeData = [
+const TimeData: TimeDataItem[] = [
     {
         value: '23:30',
         label: '23:30',
@@ -30,15 +34,15 @@ const TimeData = [
     },
 ];
 export default function Enroll() {
-    const [date, setDate] = useState(null);
-    const [selectedOption, setSelectedOption] = useState(TimeData[0].value);
-    const [selectedFile, setSelectedFile] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [caption, setCaption] = useState(null);
-    const dateRef = useRef(null);
-    const imgRef = useRef(null);
-    const prdNameRef = useRef(null);
-    const selectRef = useRef(null);
+    const [date, setDate] = useState<string | null>(null);
+    const [selectedOption, setSelectedOption] = useState<string>(TimeData[0].value);
+    const [selectedFile, setSelectedFile] = useState<string | null>(null);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [caption, setCaption] = useState<string | null>(null);
+    const dateRef = useRef<HTMLInputElement>(null);
+    const imgRef = useRef<HTMLInputElement>(null);
+    const prdNameRef = useRef<HTMLInputElement>(null);
+    const selectRef = useRef<Select<TimeDataItem>>(null);
 
     async function uploadPost() {
         if (loading) return;
@@ -64,7 +68,7 @@ export default function Enroll() {
         setSelectedFile(null);
     }
 
-    function addImageToPost(event) {
+    function addImageToPost(event: React.ChangeEvent<HTMLInputElement>) {
         const reader = new FileReader();
         if (event.target.files[0]) {
             reader.readAsDataURL(event.target.files[0]);

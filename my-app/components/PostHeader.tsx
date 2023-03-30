@@ -17,7 +17,7 @@ export default function PostHeader() {
         dispatch(changeDTM(month - 1));
     };
     return (
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center mt-3 rounded-sm">
             <ArrowSmallLeftIcon
                 className="w-12 mr-3 cursor-pointer h-9"
                 onClick={() => {
