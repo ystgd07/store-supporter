@@ -13,7 +13,7 @@
   - 업로드가 된 상품을 메인 화면에서 달 별로 확인하자!
   - 이번 달 유통기한이 지난 상품을 앱에서 확인하자!
 * 주요 기술
-  - React,next13
+  - React,next13,typescript
   - tailwind css
   - Firestore(severless)
   - vercel(배포)
