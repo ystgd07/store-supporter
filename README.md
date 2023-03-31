@@ -16,3 +16,4 @@
   - React,next13
   - tailwind css
   - Firestore(severless)
+  - vercel(배포)
