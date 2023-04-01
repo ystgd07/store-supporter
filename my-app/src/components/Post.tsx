@@ -21,10 +21,6 @@ export default function Post({ caption, image, expireTime, timestamp, date }: Po
     dayjs.extend(utc);
     dayjs.extend(timezone);
 
-    const month = useSelector((state: { post: { month: number } }) => {
-        return state.post.month;
-    });
-
     const day = dayjs().format('DD');
 
     const expire = dayjs.tz(`${date} ${expireTime}`, 'YYYY-MM-DD HH:mm', 'Asia/Seoul');
@@ -52,13 +48,9 @@ export default function Post({ caption, image, expireTime, timestamp, date }: Po
                 <p className="flex item-center">{date}</p>
                 <p className="line-clamp-2 text-md">{expireTime}</p>
                 <div className="flex flex-row mt-5">
-                    {flag && month === Number(dayjs().format('MM')) ? (
-                        <ClockIcon className="w-5 h-5 mr-1 text-red-600" />
-                    ) : (
-                        <ClockIcon className="w-5 h-5 mr-1 text-green-600" />
-                    )}
+                    {flag ? <ClockIcon className="w-5 h-5 mr-1 text-red-600" /> : <ClockIcon className="w-5 h-5 mr-1 text-green-600" />}
 
-                    {flag && month === Number(dayjs().format('MM')) ? <p className="font-bold text-red-500">유통기한 지남</p> : ''}
+                    {flag ? <p className="font-bold text-red-500">유통기한 지남</p> : ''}
                 </div>
             </div>
         </div>
