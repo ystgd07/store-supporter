@@ -84,7 +84,7 @@ export default function Enroll() {
     return (
         <div className="flex flex-wrap items-center justify-center max-w-6xl p-4 mx-auto space-y-4 md:pt-8 md:flex-row md:space-x-6">
             {/* TODO: div 태그 추후 컴포넌트화 필요 */}
-            <div className="flex items-center justify-between w-full max-w-2xl px-5 mx-auto my-8 align-baseline bg-white border rounded-md">
+            <div className="flex flex-col items-center justify-between w-full max-w-2xl px-5 mx-auto my-8 align-baseline bg-white border rounded-md lg:flex-row xl:flex-row md:flex-row 2xl:flex-row">
                 <div className="flex flex-col flex-1">
                     {selectedFile ? (
                         <Image
@@ -110,6 +110,7 @@ export default function Enroll() {
                         placeholder="상품이름"
                     />
                 </div>
+                {/* //TODO: 모바일 접속 시 화면 깨짐 -> 아래의 div영역의 최대 사이즈를 조절해야함  */}
                 <div className="flex flex-col justify-between flex-1 h-full ml-5">
                     <input
                         placeholder="enroll Date"

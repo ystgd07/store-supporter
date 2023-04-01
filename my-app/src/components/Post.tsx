@@ -5,6 +5,7 @@ import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import { useSelector } from 'react-redux';
 import { ClockIcon } from '@heroicons/react/24/outline';
+
 interface PostProps {
     caption: string;
     image: string;
@@ -16,13 +17,18 @@ interface PostProps {
 
 export default function Post({ caption, image, expireTime, timestamp, date }: PostProps) {
     let flag = false;
+
     dayjs.extend(utc);
     dayjs.extend(timezone);
+
     const month = useSelector((state: { post: { month: number } }) => {
         return state.post.month;
     });
+
     const day = dayjs().format('DD');
+
     const expire = dayjs.tz(`${date} ${expireTime}`, 'YYYY-MM-DD HH:mm', 'Asia/Seoul');
+
     const now = dayjs().tz();
 
     if (now.isAfter(expire)) flag = true;
