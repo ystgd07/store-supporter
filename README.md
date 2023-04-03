@@ -1,4 +1,4 @@
-# 편유기 V1 (2023-03-30)
+# 편유기 V1.1 (2023-03-31 update)
 ## 프로젝트 소개
 왜 우리 편의점은 포스기에서 유통기한이 지난 상품을 걸러내지 못할까?
 아날로그 방식의 캘린더에 기록하는 방식은 공간도 협소하고 업무자 입장에서 알아보기 힘들다!!
@@ -15,5 +15,11 @@
 * 주요 기술
   - React,next13,typescript
   - tailwind css
-  - Firestore(severless)
+  - Firestore
   - vercel(배포)
+  
+## 2. 주요기능
+
+-매달 발생하는 유통기한 임박 상품을 등록하는 기능입니다.
+
+![편유기-Chrome-2023-04-03-12-55-53](https://user-images.githubusercontent.com/112933943/229408283-1bb28144-ccd7-40f4-9a07-72d0d9d13e2d.gif)
